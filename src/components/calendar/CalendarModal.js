@@ -6,7 +6,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 
 import { closeModalAction } from '../../actions/uiActions'
-import { eventAddNewAction, eventClearActiveAction, eventUpdatedAction } from '../../actions/calendarActions';
+import { eventClearActiveAction, eventStartAddNewAction, eventUpdatedAction } from '../../actions/calendarActions';
 
 
 
@@ -37,11 +37,6 @@ const initEvent = {
 }
 
 
-
-
-
-
-
 export const CalendarModal = () => {
 
     const dispatch = useDispatch();
@@ -67,12 +62,6 @@ export const CalendarModal = () => {
       
     }, [activeEvent,setFormValues])
     
-
-
-
-
-
-
 
     const handleInputChange = ({target}) => {
         setFormValues ({
@@ -120,14 +109,7 @@ export const CalendarModal = () => {
             dispatch( eventUpdatedAction( formValues ) )
        
         }else{
-            dispatch( eventAddNewAction({
-                ...formValues,
-                id: new Date().getTime(),
-                user:{
-                    _id:'1234',
-                    name:'Agustin'
-                }
-            }) )
+            dispatch( eventStartAddNewAction( formValues ) )
         }
 
 
@@ -135,10 +117,6 @@ export const CalendarModal = () => {
         setTitleValid(true)  
         closeModal()
     }
-
-
-    
-
 
     const closeModal = () => {
 

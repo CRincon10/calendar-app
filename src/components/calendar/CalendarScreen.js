@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'moment/locale/es'
@@ -11,7 +11,7 @@ import { CalendarEvent } from './CalendarEvent'
 import { CalendarModal } from './CalendarModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { openModalAction } from '../../actions/uiActions'
-import { eventClearActiveAction, eventSetActiveAction } from '../../actions/calendarActions'
+import { eventClearActiveAction, eventSetActiveAction, eventStartLoadingAction } from '../../actions/calendarActions'
 import { AddNewFab } from '../iu/AddNewFab'
 import { DeleteEventFab } from '../iu/DeleteEventFab'
 
@@ -20,23 +20,23 @@ import { DeleteEventFab } from '../iu/DeleteEventFab'
 moment.locale('es')
 const localizer = momentLocalizer(moment)
 
-// const events =[{
-//     title:'Cumpleaños del jefe',
-//     start: moment().toDate(),
-//     end: moment().add( 2, 'hours' ).toDate(),
-//     bgColor: '#fafafa',
-//     user:{
-//         _id:'1234',
-//         name:'Agustin'
-//     }
-// }]
-
 
 export const CalendarScreen = () => {
 
+    
+
     const dispatch = useDispatch();
 
+    useEffect(() => {
+  
+        dispatch( eventStartLoadingAction() )
+ 
+    }, [dispatch])
+
+
+
     const {events, activeEvent} = useSelector( state => state.calendar );
+    const { uid } = useSelector( state => state.auth );
     
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month' )  //estado que mantiene la ultima pestaña vista
@@ -64,9 +64,9 @@ export const CalendarScreen = () => {
     }
 
     const eventStyleGetter = ( event, start, end, isSelected ) =>{
-
+        
         const style={
-            backgroundColor: '#367CF7',
+            backgroundColor: ( uid === event.user._id ) ? '#367CF7' : '#00BCD4',
             borderRadius: '3px',
             opacity: 0.8,
             dispalay: 'block',
@@ -185,4 +185,13 @@ onViewChange      ==> esta pendiente del cambio de vista del calendario y dispar
 
 
 AddNewFab     ==> agregar nuevo boton flotante accion
+
+ useEffect(() => {
+  
+        dispatch( eventStartLoadingAction() )
+ 
+    }, [dispatch])                        ==> efecto que se dispara cuando se carga la pagina y dispara la accion eventStartLoadingAction que carga los eventos del calendario
+
+
+
 */

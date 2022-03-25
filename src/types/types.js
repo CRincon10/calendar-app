@@ -6,10 +6,14 @@ export const types = {
     uiCloseModal: '[ui] Close modal', 
 
     eventSetActive: '[calendar] Set active',
+    eventStartAddNew: '[calendar] Start add new',
     eventAddNew: '[calendar] Add new',
     eventClearAtive: '[calendar] Clear event active',
     eventUpDated: '[calendar] Event updated',
     eventDeleted: '[calendar] Event deleted',
+    eventsLoaded: '[calendar] Events loaded',                                 //este es el que se dispara cuando se cargan los eventos
+    eventLogout: '[auth] Logout',
+
 
 
 /**/authCheckingFinish: '[auth] Finish checking login state',               //Verificacion de la autenticacion y validez del token

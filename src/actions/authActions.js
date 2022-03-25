@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch"
 import { types } from "../types/types";
-
+import { eventLogoutAction } from "./calendarActions";
 
 
 export const authStartLoginAction = ( email, password ) => {
@@ -81,13 +81,10 @@ export const authStartLogoutAction = () => {
     return ( dispatch ) => {
         localStorage.clear()
         dispatch(logout())
+        dispatch( eventLogoutAction() )
 
     }
 }
-
-
-
-
 
 
 //accion sincrona que confirma si el usuario esta loggueado

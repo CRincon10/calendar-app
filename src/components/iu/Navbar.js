@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { authStartLogoutAction } from '../../actions/authActions';
 
+
+
 export const Navbar = () => {
 
     const {name} = useSelector( state => state.auth );
@@ -9,6 +11,7 @@ export const Navbar = () => {
 
     const startLogout = (  ) => {
         dispatch(authStartLogoutAction())
+        
     }
 
 
@@ -20,7 +23,8 @@ export const Navbar = () => {
             
             <button 
                 className='btn btn-outline-danger'
-                onClick={ startLogout }    
+                onClick={ startLogout } 
+                   
             >
                 <i className='fas fa-sign-out-alt'></i>
                 <span> Salir</span>

@@ -1,8 +1,5 @@
-
-import moment from "moment";
-import { types } from "../types/types";
-
-
+/*
+    referencia de como debe verse el objeto que se va a enviar
 const initialState = {
     events:[{
         id: new Date().getTime(),
@@ -18,6 +15,15 @@ const initialState = {
     }],
     activeEvent: null
 
+}
+*/
+
+import { types } from "../types/types";
+
+
+const initialState = { 
+    events: [],
+    activeEvent: null
 }
 
 export const calendarReducer = ( state = initialState, action ) => {
@@ -56,6 +62,15 @@ export const calendarReducer = ( state = initialState, action ) => {
                 activeEvent: null,
             }
 
+        case types.eventsLoaded:
+            return{
+                ...state,
+                events: [...action.payload]
+            }
+        case types.eventLogout:
+            return { 
+                ...initialState 
+            }
 
         default: 
             return state;
