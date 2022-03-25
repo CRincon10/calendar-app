@@ -39,7 +39,7 @@ export const CalendarScreen = () => {
     const {events, activeEvent} = useSelector( state => state.calendar );
     
 
-    const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'mont' )  //estado que mantiene la ultima pestaña vista
+    const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month' )  //estado que mantiene la ultima pestaña vista
 
     const onSelectEvent = ( e ) => {
         // console.log(e)
@@ -81,7 +81,7 @@ export const CalendarScreen = () => {
 
     
     return (            
-        <div className='calendar-screen'>
+        <div className='calendar-screen animate__animated animate__fadeIn'>
             <Navbar/>
             
             

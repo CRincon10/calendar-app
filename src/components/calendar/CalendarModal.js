@@ -154,7 +154,7 @@ export const CalendarModal = () => {
         // onAfterOpen={ afterOpenModal }
         onRequestClose={ closeModal }
         style={ customStyles }
-        className='modal'
+        className='modal animate__animated animate__fadeIn'
         overlayClassName='modal-fondo'
         closeTimeoutMS={ 300 }
         
